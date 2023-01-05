@@ -1,0 +1,191 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+<style>
+    
+    .login-form-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 490px;
+        height: 390PX;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        margin: auto;
+        background: #51546e;
+        border-radius: 5px;
+        box-shadow: 0 8px 16px  black;
+    }
+
+    .form-control {
+        width: 90%;
+        height: 40px;
+        background:#b2bdbd;
+        border-radius: 4px;
+        border: 1px solid #b2bdbd;
+        margin: 10px 0 15px 0;
+        padding: 0 5px;
+        margin-top: 18px;
+        margin-left: 12px;
+    }
+
+    .form-label {
+        float: left;
+        margin-left: 12px;
+        margin-top: 22px;
+        color:#e5e5e5;
+        font-size: 20px;
+    }
+
+    .btn {
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 120px;
+        height: 37px;
+        border: none;
+        outline: none;
+        background:#3f4156;
+        cursor: pointer;
+        text-transform: uppercase;
+        color: #e5e5e5;
+        border-radius: 3px;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    .btn:hover {
+        background: #2d2d39;
+        transition: .5s;
+    }
+
+    .sign-form {
+        float: left;
+        margin-top: 15px;
+        margin-left: 12px;
+        color: #e5e5e5;
+        font-size: 20px;
+    }
+
+    .sign {
+        padding: 8px;
+        color:#e5e5e5;
+        border-radius: 4px;
+        text-transform: uppercase;
+        background-color: #3f4156;
+    }
+
+    .sign:hover{
+        background: #2d2d39;
+        transition: .5s;
+    }
+
+
+    .form-container {
+        padding: 10px;
+    }
+
+    .label1 {
+        padding-top: 10px !important;
+        display: block;
+        border-radius: 5px;
+        color: #e5e5e5;
+        font-size: 20px;
+    }
+
+    
+    .int {
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 120px;
+        height: 37px;
+        border: none;
+        outline: none;
+        background:#3f4156;
+        cursor: pointer;
+        text-transform: uppercase;
+        color: #e5e5e5;
+        border-radius: 3px;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+
+    .int:hover {
+        background: #2d2d39;
+        transition: .5s;
+    }
+
+
+    .user-int {
+        border: 1px solid #757575;
+        margin-top: 8px;
+        border-radius: 5px;
+        padding: 10px;
+        width: 90%;
+        background:#b2bdbd;
+    }
+
+
+    .log {
+        float: left;
+        margin-top: 5px;
+        margin-left: 12px;
+        color: #e5e5e5;
+        font-size: 20px;
+    }
+
+
+    .logbtn {
+        padding: 8px;
+        color: #e5e5e5;
+        border-radius: 4px;
+        text-transform: uppercase;
+        background-color:#3f4156;
+    }
+
+
+    .logbtn:hover{
+        background-color:#2d2d39
+    }
+
+</style>
+
+
+
+<div class="login-form-container">
+
+    {% if page == 'login' %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div>
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Enter Username" />
+            </div>
+            <div>
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" />
+            </div>
+            <input class="btn" type="submit" value="Login" />
+        </form>
+        <p class="sign-form">Haven't signed up yet?&nbsp<a class="sign" href="{% url 'register' %}">Sign up</a></p>
+    </div>
+    {% else %}
+    <div>
+        <form method="POST" action="" class="form-container">
+            {% csrf_token %}
+            <label class="label1">{{form.username.label}}</label>
+            <input type="text" name="username" class="user-int" placeholder="Enter Username" />
+            <label class="label1">{{form.password1.label}}</label>
+            <input type="password1" name="password1" class="user-int" placeholder="Enter Password" />
+            <label class="label1">{{form.password2.label}}</label>
+            <input type="password2" name="password2" class="user-int" placeholder="Confirm Password" />
+            <input type="submit" value="Register" class="int" />
+        </form>
+        <p class="log">Already signed up?&nbsp<a class="logbtn" href="{% url 'login' %}">Login</a></p>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock content %}

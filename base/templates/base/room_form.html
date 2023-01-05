@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+
+    .login-form-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 450px;
+        height: 350PX;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        margin: auto;
+        background: #0066FF;
+        border-radius: 5px;
+        box-shadow: 0 8px 16px #5f76d1;
+    }
+
+    .label1 {
+        padding-top: 10px !important;
+        display: block;
+        border-radius: 5px;
+        color: whitesmoke;
+        font-size: 20px;
+    }
+
+    .int {
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 120px;
+        height: 37px;
+        border: none;
+        outline: none;
+        background: #0066FF;
+        cursor: pointer;
+        text-transform: uppercase;
+        color: whitesmoke;
+        border-radius: 3px;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    .int:hover {
+        background: #1b9bff;
+        transition: .5s;
+    }
+
+    .user-int {
+        border: 1px solid #757575;
+        margin-top: 8px;
+        border-radius: 5px;
+        padding: 10px;
+        width: 90%;
+    }
+
+    .form-container {
+        padding: 10px;
+    }
+
+
+</style>
+
+<div  class="login-form-container">
+    <form method="POST" action="" class="form-container">
+        {% csrf_token %}
+
+        <div>
+            <label class="label1" for="room_topic">Enter a Topic</label>
+            <input type="text" name="topic" value="{{room.topic.name}}" class="user-int" list="topic-list" />
+            <datalist id="topic-list">
+                <select id="room_topic" >
+                    {% for topic in topics %}
+                        <option value="{{topic.name}}">{{topic.name}}</option>
+                    {% endfor  %}
+                </select>
+            </datalist>
+        </div>
+
+        <div>
+            <label class="label1">Room Name</label>
+            <input type="text" name="name" class="user-int" value="{{room.name}}" placeholder="Enter Room Name" />
+        </div>
+
+        <div>
+            <label class="label1">Description</label>
+            <input type="text" name="description" class="user-int" value="{{room.description}}" placeholder="Description" />
+        </div>
+        <input type="submit" value="Submit" class="int" />
+    </form>
+</div>
+
+{% endblock content %}
